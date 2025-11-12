@@ -22,7 +22,8 @@ if(!ParsedPayload.success){
 }
 await Todo.create({
     title:CreatePayload.title,
-    description:CreatePayload.description
+    description:CreatePayload.description,
+    completed: false
 })
 res.json({
     msg:"todo created"
@@ -45,7 +46,7 @@ if(!parsedPayload.success){
     })
     return
 }
-await Todo.updateOne({
+await Todo.findByIdAndUpdate({
     _id:req.body.id,
 },{
     completed:true
