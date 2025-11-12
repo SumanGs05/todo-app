@@ -1,11 +1,13 @@
 // basic express 
 const express=require("express")
-const { TodoSchema }=require("./types ")
+const { TodoSchema }=require("./types.js")
 const bodyParser = require('body-parser');
-const { UpdateSchema } = require("./types");
-const { Todo }=require('./db')
+const { UpdateSchema } = require("./types.js");
+const { Todo }=require('./db.js')
+require('dotenv').config();
 const app=express()
 app.use(express.json())
+
 
 // body expected inputs("string") are title description ("string")
 
@@ -25,7 +27,6 @@ await Todo.create({
 res.json({
     msg:"todo created"
 })
-app.listen(3000)
 })
 
 
@@ -34,8 +35,6 @@ const allTodo=await Todo.find()
 res.json(
     allTodo
 )
-
-    app.listen(3000)
 })
 app.put('/completed', async function (req,res){
 const Updatepayload=req.body;
@@ -46,7 +45,7 @@ if(!parsedPayload.success){
     })
     return
 }
-await Todo.update({
+await Todo.updateOne({
     _id:req.body.id,
 },{
     completed:true
@@ -54,5 +53,6 @@ await Todo.update({
 res.json({
     msg:"Todo marked complete"
 })
-    app.listen(3000)
 })
+
+app.listen(3000)
