@@ -4,14 +4,14 @@ import { Todo } from './components/Todo'
 import './App.css'
 
 function App() {
-  
+  const [todo,setTodos]=useState([])
 
   return (
   <div>
    <CreateTodo></CreateTodo>
-   <Todo></Todo>
+   <Todo ></Todo>
    </div>
   )
 }
 
-export default App
+export default App 

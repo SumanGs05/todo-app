@@ -7,9 +7,10 @@ const { Todo }=require('./db.js')
 require('dotenv').config();
 const app=express()
 app.use(express.json())
+app.use(cors())
 
 
-// body expected inputs("string") are title description ("string")
+
 
 app.post('/todo',async function (req,res){
 const CreatePayload=req.body
